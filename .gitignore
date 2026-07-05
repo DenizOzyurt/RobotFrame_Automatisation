@@ -1,0 +1,22 @@
+# Résultats Robot Framework
+Results/
+Resultats/
+
+# Rapports Robot Framework
+log.html
+report.html
+output.xml
+
+# Captures d'écran
+*.png
+
+# Python
+__pycache__/
+*.pyc
+
+# Environnement virtuel
+.venv/
+venv/
+
+# VS Code (optionnel)
+.vscode/settings.json

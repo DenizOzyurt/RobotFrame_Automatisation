@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "robotcode",
+      "request": "launch",
+      "name": "Debug Robot",
+      "target": "${file}"
+    }
+  ]
+}

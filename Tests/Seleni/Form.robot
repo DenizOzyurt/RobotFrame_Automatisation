@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 *** Test Cases ***
 Form Operations
     [Tags]    forms
-    Open Browser    https://demo-qa-app.azurewebsites.net/    chrome    options=add_argument("--headless=new"); add_argument("--no-sandbox"); add_argument("--disable-dev-shm-usage")
+    Open Browser    https://demo-qa-app.azurewebsites.net/    chrome    #options=add_argument("--headless=new"); add_argument("--no-sandbox"); add_argument("--disable-dev-shm-usage")
     Maximize Browser Window
     Sleep    2   
     #Click Element    //h5[contains(text(),'Forms')]
@@ -26,13 +26,15 @@ Form Operations
     Click Element    id=dateOfBirthInput
     Press Keys    id=dateOfBirthInput    CTRL+a
     Sleep    1
-    Press Keys    id=dateOfBirthInput    BACKSPACE
+    Press Keys    id=dateOfBirthInput    DELETE
     Sleep    1
     Input Text    id=dateOfBirthInput    05 Jun 2001
     Sleep    1
     Press Keys    id=dateOfBirthInput    TAB
 
-    Sleep    2
+    Sleep    3
+    Click Element    //div[@class="col-12 mt-4 col-md-3"]
+    Sleep    3
     Input Text    id=subjectsInput    Robot framework tutorial
     Sleep    2
     Wait Until Element Is Enabled    //input[@id='hobbies-checkbox-2']    10

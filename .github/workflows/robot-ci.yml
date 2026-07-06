@@ -38,9 +38,16 @@ jobs:
       - name: Lancer les tests Robot
         run: |
           robot -d ResultCI ./Tests/Seleni/Form.robot
-          
-      - name: Publier les rapports Robot Framework
-        uses: actions/upload-artifact@v4
+
+      - name: Préparer le rapport pour GitHub Pages
+        if: always()
+        run: |
+          mkdir -p public
+          cp -r ResultCI/* public/
+
+      - name: Déployer les rapports sur GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          name: RobotFramework-Results
-          path: ResultCI/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

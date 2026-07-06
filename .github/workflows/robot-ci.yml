@@ -38,3 +38,9 @@ jobs:
       - name: Lancer les tests Robot
         run: |
           robot -d ResultCI ./Tests/Seleni/Form.robot
+          
+      - name: Publier les rapports Robot Framework
+        uses: actions/upload-artifact@v4
+        with:
+          name: RobotFramework-Results
+          path: ResultCI/

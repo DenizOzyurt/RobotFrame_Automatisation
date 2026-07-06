@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 *** Test Cases ***
 Form Operations
     [Tags]    forms
-    Open Browser    https://demo-qa-app.azurewebsites.net/    chrome
+    Open Browser    https://demo-qa-app.azurewebsites.net/    chrome    options=add_argument("--headless=new"); add_argument("--no-sandbox"); add_argument("--disable-dev-shm-usage")
     Maximize Browser Window
     Sleep    2   
     #Click Element    //h5[contains(text(),'Forms')]

@@ -9,10 +9,15 @@ Form Operations
     [Tags]    forms
     Open Browser    https://demo-qa-app.azurewebsites.net/    chrome    options=add_argument("--headless=new"); add_argument("--no-sandbox"); add_argument("--disable-dev-shm-usage")
 #    Open Browser    https://demo-qa-app.azurewebsites.net/    chrome    options=add_argument("--headless=new"); add_argument("--no-sandbox"); add_argument("--disable-dev-shm-usage"); add_argument("--window-size=1920,1080")
-    Maximize Browser Window
+#    Maximize Browser Window
+    Set Window Size    1920    1080
     Sleep    2   
     #Click Element    //h5[contains(text(),'Forms')]Scroll Element Into View    xpath=(//div[@class='card mt-4 top-card'])[2]
-    Click Element    xpath=(//div[@class='card mt-4 top-card'])[2]
+    #Click Element    xpath=(//div[@class='card mt-4 top-card'])[2]
+    ${forms}=    Get WebElement    xpath=(//div[@class='card mt-4 top-card'])[2]
+    Execute JavaScript    arguments[0].scrollIntoView({block: "center"});    ARGUMENTS    ${forms}
+    Sleep    1
+    Execute JavaScript    arguments[0].click();    ARGUMENTS    ${forms}
     Sleep    2
     Click Element    //span[contains(text(),'Practice Form')]
     Sleep    2

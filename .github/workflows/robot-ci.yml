@@ -45,7 +45,7 @@ jobs:
       - name: Analyser les résultats avec AI Agent
         if: always()
         run: |
-          python ai_agent/analyze_robot_results.py
+          python Ai_agent/Analyze_robot_results.py
 
       - name: Préparer le rapport pour GitHub Pages
         if: always()

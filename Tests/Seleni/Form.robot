@@ -57,19 +57,21 @@ Form Operations
     Sleep    5
     Input Text    id=currentAddress    01 rue de belle vue
     Sleep    2
-#    Click Element    xpath=//div[@id='state']//div[contains(@class,'control')]
-#    Input Text       xpath=//input[@id='react-select-3-input']    Uttar Pradesh
-#    Press Keys       xpath=//input[@id='react-select-3-input']    ENTER
-    Scroll Element Into View    xpath=//div[@id='state']
-    Sleep    1
 
-    ${state}=    Get WebElement    xpath=//div[@id='state']//div[contains(@class,'control')]
-    Execute JavaScript    arguments[0].click();    ARGUMENTS    ${state}
+    Click Element    xpath=//div[@id='state']//div[contains(@class,'control')]
+    Input Text       xpath=//input[@id='react-select-3-input']    Uttar Pradesh
+    Press Keys       xpath=//input[@id='react-select-3-input']    ENTER
 
-    Wait Until Element Is Visible    xpath=//input[@id='react-select-3-input']    10s
-    Input Text    xpath=//input[@id='react-select-3-input']    Uttar Pradesh
-    Press Keys    xpath=//input[@id='react-select-3-input']    ENTER
-    Sleep    2
+#    Scroll Element Into View    xpath=//div[@id='state']
+#    Sleep    1
+
+#    ${state}=    Get WebElement    xpath=//div[@id='state']//div[contains(@class,'control')]
+#    Execute JavaScript    arguments[0].click();    ARGUMENTS    ${state}
+
+#    Wait Until Element Is Visible    xpath=//input[@id='react-select-3-input']    10s
+#    Input Text    xpath=//input[@id='react-select-3-input']    Uttar Pradesh
+#    Press Keys    xpath=//input[@id='react-select-3-input']    ENTER
+#    Sleep    2
 
     Click Element    xpath=//div[@id='city']//div[contains(@class,'control')]
     Input Text       xpath=//input[@id='react-select-4-input']    Merrut

@@ -30,6 +30,7 @@ jobs:
         run: |
           pip install robotframework
           pip install robotframework-seleniumlibrary
+          pip install openai
 
       - name: Installer Chrome
         uses: browser-actions/setup-chrome@v1
@@ -44,6 +45,8 @@ jobs:
 
       - name: Analyser les résultats avec AI Agent
         if: always()
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python Ai_agent/Analyze_robot_results.py
 
@@ -52,7 +55,7 @@ jobs:
         run: |
           mkdir -p public
           cp -r ResultCI/* public/
-          
+
           if [ -f public/report.html ]; then
             cp public/report.html public/index.html
           fi

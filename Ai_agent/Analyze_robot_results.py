@@ -1,5 +1,10 @@
 from robot.api import ExecutionResult, ResultVisitor
+import os
+from openai import OpenAI
 
+client = OpenAI(
+    api_key=os.environ["OPENAI_API_KEY"]
+)
 
 class RobotSummary(ResultVisitor):
     def __init__(self):
@@ -90,19 +95,37 @@ with open("ResultCI/ai-summary.html", "w", encoding="utf-8") as f:
             f.write(f"<p>{test['message']}</p>")
 
         if test["status"] == "FAIL":
+            try:
+                response = client.responses.create(
+                    model="gpt-4.1-mini",
+                    input=f"""
+                Tu es un expert QA Automation et Robot Framework.
 
+                Analyse cet échec de test.
+
+                Nom du test :
+                {test['name']}
+
+                Message d'erreur :
+                {test['message']}
+
+                Donne une analyse courte en français avec :
+                1. Cause probable
+                2. Correction proposée
+                3. Bonnes pratiques
+                """
+                            )
+
+                ai_analysis = response.output_text
+            
+            except Exception as e :
+                 ai_analysis = f"Erreur OpenAI : {e}"
+        
             f.write("<h3>💡 AI Suggestions</h3>")
-
-            f.write("""
-            <ul>
-                <li>Check locator.</li>
-                <li>Use Wait Until Element Is Visible.</li>
-                <li>Use Scroll Element Into View.</li>
-                <li>Check Headless mode.</li>
-                <li>Verify timing and synchronization.</li>
-            </ul>
-            """)
+            f.write(f"<pre>{ai_analysis}</pre>")
 
         f.write("</div>")
 
     f.write("</body></html>")
+
+    

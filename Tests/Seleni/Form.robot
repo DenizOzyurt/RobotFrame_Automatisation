@@ -4,6 +4,10 @@ Library    SeleniumLibrary
 *** Variables ***
 ${IMAGE}    ${EXECDIR}/Ressources/Images/open.jpg
 
+${browser1}    chrome
+${browser2}    firefox
+
+${url_google}    https://www.google.fr
 *** Test Cases ***
 Form Operations
     [Tags]    forms
@@ -93,3 +97,34 @@ Form Operations
 
     Sleep    3
 
+Recherche Google
+    #Create Webdriver    chrome  -> pour utiliser chrome après téléchargé
+    Open navigatorChrome
+    Wait Until Element Is Enabled    xpath=//*[@id="L2AGLb"]  timeout= 10
+    Click Element    xpath=//*[@id="L2AGLb"]
+    Page Should Contain Element    xpath=//*[@aria-label="Recherche Google"]
+    Input Text    xpath=//textarea[@name="qQ"]    Robotframework    
+    Click Element    xpath=//*[@aria-label="Recherche Google"]
+
+
+Iframe conn
+    [Tags]    Iframe
+#    Open Browser    https://the-internet.herokuapp.com/frames    chrome
+    Open Browser    https://the-internet.herokuapp.com/frames    chrome    options=add_argument("--headless=new"); add_argument("--no-sandbox"); add_argument("--disable-dev-shm-usage")
+    Sleep    2
+    Click Element    //a[@href="/iframe"]
+    Sleep    2
+    Click Element    //button[@type='button']/div[@aria-label="Close"]
+   # Select Frame    //iframe[@id='mce_0_ifr']
+    Click Element    //body[@id="tinymce"]/p
+    Element Should Contain    //body[@id="tinymce"]/p    Your content goes here.
+  #  Unselect Frame    
+    Sleep    2
+    Click Element    //a[contains(text(),'Elemental')]       
+    Sleep    2
+
+*** Keywords ***
+Open navigatorChrome
+    open browser    ${url_google}     ${browser1}    options=add_argument("--headless=new")
+    Maximize Browser Window     
+    

@@ -15,7 +15,7 @@ Recherche Google
     Wait Until Element Is Enabled    xpath=//*[@id="L2AGLb"]  timeout= 10
     Click Element    xpath=//*[@id="L2AGLb"]
     Page Should Contain Element    xpath=//*[@aria-label="Recherche Google"]
-    Input Text    xpath=//textarea[@name="q"]    Robotframework    
+    Input Text    xpath=//textarea[@name="qQ"]    Robotframework    
     Click Element    xpath=//*[@aria-label="Recherche Google"]
     
     #Wait Until Element Is Enabled    xpath=//*[@id="L2AGLb"]  timeout= 10
